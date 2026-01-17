@@ -5,7 +5,7 @@
     <span>Signal based Shopping Cart </span>
     <span class="nav-spacer"></span>
     <button mat-icon-button routerLink="cart">
-        <span matBadge="{{cartCount()}}" matBadgePosition="after" matBadgeOverlap="false"
+        <span matBadge="{{cartItems().length}}" matBadgePosition="after" matBadgeOverlap="false"
             matBadgeColor="primary"><mat-icon>shopping_cart</mat-icon></span>
     </button>
     <button mat-icon-button class="nav-icon" aria-label="nav icon-button with share icon">

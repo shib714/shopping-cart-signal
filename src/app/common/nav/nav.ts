@@ -31,7 +31,8 @@ export class Nav {
   private document = inject(DOCUMENT);
   protected themeService = inject(Theme);
   protected cartService = inject(CartService);
-   cartCount = computed(() => this.cartService.cartItems().reduce((acc, item) => acc + item.quantity, 0));
+   //cartCount = computed(() => this.cartService.cartItems().reduce((acc, item) => acc + item.quantity, 0));
+   cartItems = this.cartService.cartItems;
 
 
   onThemeChange(event: MatSlideToggleChange) {

@@ -20,7 +20,7 @@ import { CartSummaryComponent } from "../cart-summary/cart-summary.component";
             <button mat-stroked-button color="primary" routerLink="/product-list">Start Shopping</button>
         </div>
       } @else {
-        <h2>Number of items in your cart: {{ cartItems().length }}</h2>
+        <h2>Your shopping cart contains: {{ cartItems().length }} items.</h2>
           @for (item of cartItems(); track item.product.id) {
             <cart-item [item]='item'></cart-item> 
           }
