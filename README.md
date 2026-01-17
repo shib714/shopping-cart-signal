@@ -1,6 +1,8 @@
 # ShoppingCartSignal
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+This is a signal based shopping cart example where components and services are all written in signal.
+The same functionality are implemented using NgRX and NgRX signal store in the NGRX-STORE repository.
 
 ## Development server
 

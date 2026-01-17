@@ -1,11 +1,11 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Nav } from './common/nav/nav';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.scss'
+  imports: [Nav],
+  template: `<app-nav/>`,
+  styles: ``
 })
 export class App {
   protected readonly title = signal('shopping-cart-signal');
