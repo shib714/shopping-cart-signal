@@ -29,8 +29,8 @@ export class SignalEffectExample {
 
     // initial signals to support the ui template
     selectedVehicle = signal<Vehicle | undefined>(undefined);
-    total = signal(0);
-    color = signal('blue');
+    //total = signal(0);
+    //color = signal('blue');
 
     //for the drop down list
     vehicles = signal<Vehicle[]>([
@@ -42,11 +42,20 @@ export class SignalEffectExample {
     quantity = signal(0);
 
     // Task 1: React to changes and adjust the total and color.
-    totalEff = effect(() => {
-        this.total.set((this.selectedVehicle()?.price ?? 0) * this.quantity());
-        console.log('total:', this.total());
-        this.color.set(this.total() > 50000 ? 'green' : 'blue');
-    });
+    // when either signal (selectedVehicle and quantity) changes,
+    // This code will re-execute, recalculate the total and set that into the total signal
+    // it also set the color signal when the total exceeds 50000 to green    
+    // totalEff = effect(() => {
+    //     this.total.set((this.selectedVehicle()?.price ?? 0) * this.quantity());
+    //     console.log('total:', this.total());
+    //     this.color.set(this.total() > 50000 ? 'green' : 'blue');
+    // });
+    //Note: there is a better way to accomplish this using computed signal; we commented the above code 
+    // and re-write it as below:
+    //using computed, we get dependency tracking
+    total = computed(() => (this.selectedVehicle()?.price ?? 0) * this.quantity());
+    color = computed(() => this.total() > 50000 ? 'green' : 'blue');
+
 
     // Task 2: Reset the quantity when the vehicle changes
     qtyResetEffcet = effect(() => {
