@@ -8,14 +8,19 @@ export const routes: Routes = [
         loadComponent: () => import('./common/home/home')
             .then((m) => m.Home), title: 'Home'
     },
-     {
-         path: 'product-list',
-         loadComponent: () => import('./shopping-cart/products/product-list/product-list')
-             .then((m) => m.ProductList), title: 'Sgopping Cart App'
-     },
-          {
-         path: 'cart',
-         loadComponent: () => import('./shopping-cart/cart/cart-list/cart-list')
-             .then((m) => m.CartList), title: 'Sgopping Cart'
-     },
+    {
+        path: 'product-list',
+        loadComponent: () => import('./shopping-cart/products/product-list/product-list')
+            .then((m) => m.ProductList), title: 'Sgopping Cart App'
+    },
+    {
+        path: 'cart',
+        loadComponent: () => import('./shopping-cart/cart/cart-list/cart-list')
+            .then((m) => m.CartList), title: 'Sgopping Cart'
+    },
+    {
+        path: 'signal-effect',
+        loadComponent: () => import('./signal-effect-usecase/signal-effect-example')
+            .then((m) => m.SignalEffectExample), title: 'Signal Effect Example'
+    },
 ];
