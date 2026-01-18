@@ -7,7 +7,7 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
     selector: 'signal-effect',
     imports: [FormsModule],
     template: `
-  <h1>Star Wars Vehicle Sales</h1>
+  <h1>Proper use of signal effect: Star Wars Vehicle Sales</h1>
   <select class="select" (change)="onSelectedVehicle($event.target)">
     <option value="" disabled selected>--Select a vehicle--</option>
     @for(vehicle of vehicles(); track vehicle) {
@@ -40,8 +40,6 @@ export class SignalEffectExample {
     ]);
     //input value of the quantity
     quantity = signal(0);
-
-
 
     // Task 1: React to changes and adjust the total and color.
     totalEff = effect(() => {
