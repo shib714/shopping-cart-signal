@@ -39,7 +39,13 @@ export class SignalEffectExample {
         { id: 3, name: 'TIE Fighter', price: 55000 }
     ]);
     //input value of the quantity
-    quantity = signal(0);
+    //quantity = signal(0);
+    //we commented the quantity property and use linkedSignal to improve our code in Task 2 as below:
+    quantity = linkedSignal({
+        source: this.selectedVehicle,
+        computation: ()  => 1
+    });
+
 
     // Task 1: React to changes and adjust the total and color.
     // when either signal (selectedVehicle and quantity) changes,
@@ -57,12 +63,17 @@ export class SignalEffectExample {
     color = computed(() => this.total() > 50000 ? 'green' : 'blue');
 
 
-    // Task 2: Reset the quantity when the vehicle changes
-    qtyResetEffcet = effect(() => {
-        if (this.selectedVehicle()) {
-            this.quantity.set(1);
-        }
-    });
+    // Task 2: Reset the quantity when the vehicle selection changes
+    // qtyResetEffcet = effect(() => {
+    //     if (this.selectedVehicle()) {
+    //         this.quantity.set(1);
+    //     }
+    // });
+    //Note: there is a better way to accomplish this using linked signal; we commented the above code 
+    // and re-write the quantity above using linked signal see line 44 :
+
+
+
     // Task 3: Retrieve the movies for the selected vehicle
     http = inject(HttpClient);
     movie = signal<Film | undefined>(undefined);
