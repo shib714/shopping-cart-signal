@@ -21,6 +21,10 @@ export class CartService {
   // Delivery is free if spending more than 100,000 credits
   deliveryFee = computed(() => this.subTotal() < 100 ? 10 : 0);
 
+  cartCount = computed(() => this.cartItems().reduce((acc, item) => acc + item.quantity, 0));
+  savings = computed(() => this.cartCount() > 3 ? this.subTotal() * 0.05 : this.subTotal());
+
+
 
   // Tax could be based on shipping address zip code
   tax = computed(() => Math.round(this.subTotal() * 13.00) / 100);

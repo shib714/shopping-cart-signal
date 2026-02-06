@@ -22,6 +22,7 @@ export class CartSummaryComponent {
   subTotal = this.cartService.subTotal;
 
   deliveryFee = this.cartService.deliveryFee;
+  savings = this.cartService.savings;
 
   tax = this.cartService.tax;
   totalPrice = this.cartService.totalPrice;

@@ -41,9 +41,10 @@ export class SignalEffectExample {
     //input value of the quantity
     //quantity = signal(0);
     //we commented the quantity property and use linkedSignal to improve our code in Task 2 as below:
+    // First Look at Angular's new linkedSignal()  
     quantity = linkedSignal({
         source: this.selectedVehicle,
-        computation: ()  => 1
+        computation: () => 1
     });
 
 
@@ -76,11 +77,23 @@ export class SignalEffectExample {
 
     // Task 3: Retrieve the movies for the selected vehicle
     http = inject(HttpClient);
-    movie = signal<Film | undefined>(undefined);
-    movieEff = effect(() =>
-        this.http.get<Film>(`${this.url}/${this.selectedVehicle()?.id}`)
-            .subscribe(m => this.movie.set(m))
-    );
+    // movie = signal<Film | undefined>(undefined);
+    // //loding the related data
+    // movieEff = effect(() =>
+    //     this.http.get<Film>(`${this.url}/${this.selectedVehicle()?.id}`)
+    //         .subscribe(m => this.movie.set(m))
+    // );
+
+    //We could improve the above code using RX resource 
+    movieResource = rxResource({
+        params: this.selectedVehicle,
+        // Destructuring: extracting the `request` property and assigning its value to `vehicle`.
+        stream: ({ params: vehicle }) => this.http.get<Film>(`${this.url}/${vehicle?.id}`),
+    });
+    movie = computed(() => this.movieResource.value());
+
+
+
     // Task 4: Log out signals when they change
     qtyEff = effect(() => console.log('quantity:', this.quantity()));
     vehEff = effect(() => console.log('vehicle:', JSON.stringify(this.selectedVehicle())));
