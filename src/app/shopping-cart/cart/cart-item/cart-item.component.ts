@@ -46,10 +46,10 @@ export class CartItemComponent {
 
 
 
-  onSelectionChange(quantity: number): void {
-    // Update the quantity in the item
-    this.cartService.updateInCart(this.cartItem(), Number(quantity));
-  }
+  // onSelectionChange(quantity: number): void {
+  //   // Update the quantity in the item
+  //   this.cartService.updateInCart(this.cartItem(), Number(quantity));
+  // }
 
   removeItem(): void {
     this.cartService.removeFromCart(this.cartItem());
